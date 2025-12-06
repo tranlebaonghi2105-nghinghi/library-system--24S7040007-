@@ -55,3 +55,20 @@ def view_books():
     for i, book in enumerate(library, start=1):
         status = "Available" if book['is_available'] else "Not available"
         print(f"{i}. {book['title']} | {book['author']} | {status}")
+def search_book():
+    print("\n--- SEARCH BOOK ---")
+    if not library:
+        print("No books available to search.")
+        return
+
+    query = input("Enter keyword: ").lower()
+    found = False
+
+    for index, book in enumerate(library, start=1):
+        if query in book["title"].lower():
+            status = "Available" if book['is_available'] else "Not available"
+            print(f"{index}. {book['title']} | {book['author']} | {status}")
+            found = True
+
+    if not found:
+        print("No matching books found.")
